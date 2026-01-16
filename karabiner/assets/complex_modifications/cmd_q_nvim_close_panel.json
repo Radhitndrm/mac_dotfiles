@@ -1,0 +1,32 @@
+
+{
+  "title": "Cmd+Q closes Neovim window (not app)",
+  "rules": [
+    {
+      "description": "Cmd+Q → Ctrl-W q (Kitty only)",
+      "manipulators": [
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "q",
+            "modifiers": {
+              "mandatory": ["command"]
+            }
+          },
+          "to": [
+            { "key_code": "w", "modifiers": ["control"] },
+            { "key_code": "q" }
+          ],
+          "conditions": [
+            {
+              "type": "frontmost_application_if",
+              "bundle_identifiers": [
+                "net.kovidgoyal.kitty"
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
