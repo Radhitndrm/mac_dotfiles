@@ -11,7 +11,7 @@ return {
 	},
 	cmd = "Neotree",
 	keys = {
-		{ "<D-e>", ":Neotree toggle<CR>", desc = "Toggle NeoTree", silent = true },
+		{ "<M-e>", "<cmd>Neotree toggle<CR>", desc = "Toggle NeoTree", silent = true },
 	},
 	opts = {
 		close_if_last_window = true,
@@ -19,6 +19,7 @@ return {
 		enable_git_status = true,
 		enable_diagnostics = true,
 		sort_case_insensitive = true,
+
 		default_component_configs = {
 			container = {
 				enable_character_fade = true,
@@ -53,6 +54,7 @@ return {
 				},
 			},
 		},
+
 		window = {
 			position = "left",
 			width = 35,
@@ -61,15 +63,17 @@ return {
 				nowait = true,
 			},
 			mappings = {
-				["<space>l"] = "toggle_node",
-				["<space>l"] = "close_window",
 				["<CR>"] = "open",
 				["o"] = "open",
-				["h"] = "close_node",
 				["l"] = "open",
+				["h"] = "close_node",
+
+				["<space>"] = "toggle_node",
+				["q"] = "close_window",
 				["<leader>r"] = "refresh",
 			},
 		},
+
 		filesystem = {
 			filtered_items = {
 				visible = true,
@@ -79,11 +83,13 @@ return {
 			follow_current_file = true,
 			group_empty_dirs = true,
 		},
+
 		buffers = {
 			follow_current_file = true,
 			group_empty_dirs = true,
 			show_unloaded = true,
 		},
+
 		git_status = {
 			window = {
 				position = "float",

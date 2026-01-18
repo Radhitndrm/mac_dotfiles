@@ -84,7 +84,7 @@ return {
 			local builtin = require("telescope.builtin")
 
 			vim.keymap.set("n", "<leader>sh", builtin.help_tags, { desc = "[S]earch [H]elp" })
-			vim.keymap.set("n", "<D-p>", function()
+			vim.keymap.set("n", "<M-p>", function()
 				require("telescope").extensions["recent-files"].recent_files({
 					hidden = true,
 				})

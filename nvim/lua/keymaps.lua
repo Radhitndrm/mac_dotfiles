@@ -1,107 +1,139 @@
--- [[ Basic Keymaps ]]
---  See `:help vim.keymap.set()`
+-- =========================================================
+-- 🧠 NEOVIM KEYMAPS — TMUX FRIENDLY POWER SETUP
+-- =========================================================
 
--- Clear highlights on search when pressing <Esc> in normal mode
---  See `:help hlsearch`
-vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
+local map = vim.keymap.set
+local opts = { noremap = true, silent = true }
 
-vim.keymap.set("n", "<C-f>", "<cmd>silent !tmux neww tmux-sessionizer<CR>")
--- Diagnostic keymaps
-vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostic [Q]uickfix list" })
+-- =========================================================
+-- 🚪 BASIC
+-- =========================================================
 
--- Exit terminal mode in the builtin terminal with a shortcut that is a bit easier
--- for people to discover. Otherwise, you normally need to press <C-\><C-n>, which
--- is not what someone will guess without a bit more experience.
---
--- NOTE: This won't work in all terminal emulators/tmux/etc. Try your own mapping
--- or just use <C-\><C-n> to exit terminal mode
-vim.keymap.set("t", "<Esc><Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
+-- Clear search highlight
+map("n", "<Esc>", "<cmd>nohlsearch<CR>", opts)
 
-vim.keymap.set("i", "jj", "<Esc>")
-vim.keymap.set("n", "<M-o>", "<C-^>")
+-- Exit terminal mode
+map("t", "<Esc><Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
 
--- copilot
-vim.api.nvim_set_keymap("i", "<M-CR>", 'copilot#Accept("<CR>")', { expr = true, noremap = true, silent = true })
-vim.g.copilot_no_tab_map = true
+-- Insert mode escape
+map("i", "jj", "<Esc>", { desc = "Exit insert mode" })
 
--- Run Python file dengan Alt+\
+-- Alternate file
+map("n", "<M-o>", "<C-^>", { desc = "Alternate file" })
 
-vim.keymap.set("n", "<D-\\>", function()
+-- =========================================================
+-- 💾 FILE / BUFFER
+-- =========================================================
+
+map("n", "<M-s>", "<cmd>w<CR>", { desc = "Save file" })
+map("n", "<M-q>", "<cmd>q<CR>", { desc = "Quit" })
+map("n", "<M-S-q>", "<cmd>q!<CR>", { desc = "Force quit" })
+
+-- Buffer navigation (Barbar / Bufferline)
+map("n", "<M-,>", "<Cmd>BufferPrevious<CR>", { desc = "Previous buffer" })
+map("n", "<M-.>", "<Cmd>BufferNext<CR>", { desc = "Next buffer" })
+map("n", "<M-c>", "<Cmd>BufferClose<CR>", { desc = "Close buffer" })
+map("n", "<M-p>", "<Cmd>BufferPick<CR>", { desc = "Pick buffer" })
+
+-- Select all
+map("n", "vv", "ggVG", { desc = "Select all" })
+
+-- =========================================================
+-- 🧭 WINDOW / SPLIT
+-- =========================================================
+
+map("n", "<leader>v", "<cmd>vsplit<CR>", { desc = "Vertical split" })
+map("n", "<leader>x", "<cmd>close<CR>", { desc = "Close window" })
+
+map("n", "<leader>h", "<C-w>h", { desc = "Focus left" })
+map("n", "<leader>j", "<C-w>j", { desc = "Focus down" })
+map("n", "<leader>k", "<C-w>k", { desc = "Focus up" })
+map("n", "<leader>l", "<C-w>l", { desc = "Focus right" })
+
+-- =========================================================
+-- 🧠 SCROLL & SEARCH UX
+-- =========================================================
+
+map("n", "<C-d>", "<C-d>zz")
+map("n", "<C-u>", "<C-u>zz")
+map("n", "n", "nzzzv")
+map("n", "N", "Nzzzv")
+
+-- =========================================================
+-- ✂️ EDITING MAGIC
+-- =========================================================
+
+-- Join line keep cursor
+map("n", "J", "mzJ`z")
+
+-- Move selected block
+map("v", "J", ":m '>+1<CR>gv=gv")
+map("v", "K", ":m '<-2<CR>gv=gv")
+
+-- Semicolon / comma
+map("n", ";;", "mzA;<Esc>`z", { desc = "Append ;" })
+map("n", ",,", "mzA,<Esc>`z", { desc = "Append ," })
+
+-- Paste without overwrite
+map("x", "<leader>p", [["_dP]])
+
+-- Clipboard
+map({ "n", "v" }, "<leader>y", [["+y]])
+map("n", "<leader>Y", [["+Y]])
+map({ "n", "v" }, "<leader>d", [["_d]])
+
+-- =========================================================
+-- 🔍 TELESCOPE / SEARCH
+-- =========================================================
+
+map("n", "<M-f>", "<cmd>Telescope find_files<CR>", { desc = "Find files" })
+map("n", "<M-g>", "<cmd>Telescope live_grep<CR>", { desc = "Live grep" })
+map("n", "<M-b>", "<cmd>Telescope buffers<CR>", { desc = "Buffers" })
+
+-- =========================================================
+-- 🧪 LSP / DIAGNOSTIC
+-- =========================================================
+
+map("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Diagnostic list" })
+map("n", "<M-r>", "<cmd>LspRestart<CR>", { desc = "Restart LSP" })
+
+-- =========================================================
+-- 🐍 RUN CURRENT PYTHON FILE
+-- =========================================================
+
+map("n", "<M-\\>", function()
 	vim.cmd("w")
-	local filepath = vim.fn.expand("%:p")
+	local file = vim.fn.expand("%:p")
 	vim.cmd(
-		"belowright split | resize 15 | term bash -c \"printf '\\n=== Run: "
-			.. filepath
+		"belowright split | resize 15 | term bash -c "
+			.. "\"printf '\\n=== Run: "
+			.. file
 			.. " ===\\n\\n'; python3 %; printf '\\n=== Done ===\\n'\""
 	)
-end, { desc = "Run current Python file" })
+end, { desc = "Run Python file" })
 
-vim.keymap.set("n", "<leader>v", ":vsplit<CR>")
-vim.keymap.set("n", "<leader>h", "<C-w><C-h>", { desc = "Move focus to the left window" })
-vim.keymap.set("n", "<leader>l", "<C-w><C-l>", { desc = "Move focus to the right window" })
-vim.keymap.set("n", "<leader>j", "<C-w><C-j>", { desc = "Move focus to the lower window" })
-vim.keymap.set("n", "<leader>k", "<C-w><C-k>", { desc = "Move focus to the upper window" })
+-- =========================================================
+-- 🤖 GITHUB COPILOT
+-- =========================================================
 
-vim.keymap.set("n", "<leader>x", ':lua vim.cmd("close")<CR>')
-vim.keymap.set("n", "<M-r>", ":LspRestart<CR>")
+vim.g.copilot_no_tab_map = true
+map("i", "<M-CR>", 'copilot#Accept("<CR>")', { expr = true, noremap = true, silent = true, desc = "Accept Copilot" })
 
-vim.keymap.set("n", ";;", "mzA;<Esc>`z", { desc = "Tambah semicolon di akhir baris" })
-vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
-vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
-vim.keymap.set("n", "J", "mzJ`z")
-vim.keymap.set("n", "<C-d>", "<C-d>zz")
-vim.keymap.set("n", "<C-u>", "<C-u>zz")
-vim.keymap.set("n", "n", "nzzzv")
-vim.keymap.set("n", "N", "Nzzzv")
-vim.keymap.set("x", "<leader>p", [["_dP]])
-vim.keymap.set({ "n", "v" }, "<leader>y", [["+y]])
-vim.keymap.set("n", "<leader>Y", [["+Y]])
-vim.keymap.set({ "n", "v" }, "<leader>d", [["_d]])
+-- =========================================================
+-- 📸 CODE SNAP
+-- =========================================================
 
--- Tambahan keymaps:
-vim.keymap.set("n", "<D-s>", ":w<CR>", { desc = "Save file (:w) with CMD+s" })
-vim.keymap.set("n", "<M-S-q>", ":q!<CR>", { desc = "Quit without saving (:q!) with Alt+Shift+q" })
+map("v", "<leader>cs", "<cmd>CodeSnap<CR>", { desc = "CodeSnap copy" })
+map("v", "<leader>cS", "<cmd>CodeSnapSave<CR>", { desc = "CodeSnap save" })
 
--- Pindah buffer
-vim.keymap.set("n", "<A-,>", "<Cmd>BufferPrevious<CR>", { desc = "Buffer sebelumnya" })
-vim.keymap.set("n", "<A-.>", "<Cmd>BufferNext<CR>", { desc = "Buffer selanjutnya" })
+-- =========================================================
+-- ✨ YANK HIGHLIGHT
+-- =========================================================
 
-vim.keymap.set("n", "<D-[>", "<Cmd>BufferPrevious<CR>")
-vim.keymap.set("n", "<D-]>", "<Cmd>BufferNext<CR>")
-
--- Tutup buffer
-vim.keymap.set("n", "<D-c>", "<Cmd>BufferClose<CR>", { desc = "Tutup buffer" })
-
--- Pick buffer
-vim.keymap.set("n", "<A-p>", "<Cmd>BufferPick<CR>", { desc = "Pilih buffer dengan huruf" })
-
--- Select all dengan "vv"
-vim.keymap.set("n", "vv", "ggVG", { desc = "Select all" })
-
--- Tambah koma di akhir baris dengan ',,'
-vim.keymap.set("n", ",,", "mzA,<Esc>`z", { desc = "Tambah koma di akhir baris" })
-
-vim.keymap.set("v", "<leader>cs", "<cmd>CodeSnap<cr>", { desc = "Snapshot Code (copy to clipboard)" })
-vim.keymap.set("v", "<leader>cS", "<cmd>CodeSnapSave<cr>", { desc = "Snapshot Code (save to file)" })
--- NOTE: Some terminals have colliding keymaps or are not able to send distinct keycodes
---
--- vim.keymap.set("n", "<C-S-h>", "<C-w>H", { desc = "Move window to the left" })
--- vim.keymap.set("n", "<C-S-l>", "<C-w>L", { desc = "Move window to the right" })
--- vim.keymap.set("n", "<C-S-j>", "<C-w>J", { desc = "Move window to the lower" })
--- vim.keymap.set("n", "<C-S-k>", "<C-w>K", { desc = "Move window to the upper" })
-
--- [[ Basic Autocommands ]]
---  See `:help lua-guide-autocommands`
-
--- Highlight when yanking (copying) text
---  Try it with `yap` in normal mode
---  See `:help vim.hl.on_yank()`
 vim.api.nvim_create_autocmd("TextYankPost", {
-	desc = "Highlight when yanking (copying) text",
-	group = vim.api.nvim_create_augroup("kickstart-highlight-yank", { clear = true }),
+	desc = "Highlight on yank",
+	group = vim.api.nvim_create_augroup("highlight-yank", { clear = true }),
 	callback = function()
 		vim.hl.on_yank()
 	end,
 })
-
--- vim: ts=2 sts=2 sw=2 et
