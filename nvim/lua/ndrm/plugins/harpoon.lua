@@ -28,7 +28,7 @@ return {
 		{ "<leader>6", "<cmd>lua require('harpoon.ui').nav_file(6)<CR>", desc = "Harpoon file 6" },
 
 		-- Harpoon menu
-		{ "<leader>h", "<cmd>lua require('harpoon.ui').toggle_quick_menu()<CR>", desc = "Harpoon menu" },
+		{ "<leader>H", "<cmd>lua require('harpoon.ui').toggle_quick_menu()<CR>", desc = "Harpoon menu" },
 
 		-- Remove mark for current file
 		{

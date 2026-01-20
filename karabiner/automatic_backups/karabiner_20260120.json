@@ -4,19 +4,6 @@
             "complex_modifications": {
                 "rules": [
                     {
-                        "description": "Disable Command + H (Hide app)",
-                        "manipulators": [
-                            {
-                                "from": {
-                                    "key_code": "h",
-                                    "modifiers": { "mandatory": ["command"] }
-                                },
-                                "to": [{ "key_code": "vk_none" }],
-                                "type": "basic"
-                            }
-                        ]
-                    },
-                    {
                         "description": "Cmd+Shift+Q sends :wq<Enter> in Neovim",
                         "manipulators": [
                             {

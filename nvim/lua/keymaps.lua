@@ -94,14 +94,26 @@ map("n", "<M-b>", "<cmd>Telescope buffers<CR>", { desc = "Buffers" })
 -- 🧪 LSP / DIAGNOSTIC
 -- =========================================================
 
-map("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Diagnostic list" })
+map("n", "<leader>q", function()
+	-- cek apakah loclist sedang terbuka di window aktif
+	local winid = vim.fn.getloclist(0, { winid = 0 }).winid
+
+	if winid ~= 0 then
+		-- loclist terbuka → tutup
+		vim.cmd("lclose")
+	else
+		-- loclist tertutup → isi diagnostic & buka
+		vim.diagnostic.setloclist()
+		vim.cmd("lopen")
+	end
+end, { desc = "Toggle diagnostic list" })
 map("n", "<M-r>", "<cmd>LspRestart<CR>", { desc = "Restart LSP" })
 
 -- =========================================================
 -- 🐍 RUN CURRENT PYTHON FILE
 -- =========================================================
 
-map("n", "<M-\\>", function()
+map("n", "<C-\\>", function()
 	vim.cmd("w")
 	local file = vim.fn.expand("%:p")
 	vim.cmd(

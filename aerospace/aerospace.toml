@@ -201,6 +201,7 @@ alt-f = 'exec-and-forget open -a /System/Library/CoreServices/Finder.app'
 alt-e = 'exec-and-forget open -a "/Applications/Final Cut Pro.app"'
 alt-z = 'exec-and-forget open -a /Applications/Zen.app'
 
+cmd-b = 'exec-and-forget open -a /Applications/Firefox.app' 
 cmd-enter = "exec-and-forget /Applications/kitty.app/Contents/MacOS/kitty --single-instance=no --override width=120,height=40 --directory /Users/ndrm"
 # 'service' binding mode declaration.
 # See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes

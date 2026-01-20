@@ -1,0 +1,25 @@
+
+{
+  "title": "Disable Command + H",
+  "rules": [
+    {
+      "description": "Disable Command + H (Hide app)",
+      "manipulators": [
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "h",
+            "modifiers": {
+              "mandatory": ["command"]
+            }
+          },
+          "to": [
+            {
+              "key_code": "vk_none"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
