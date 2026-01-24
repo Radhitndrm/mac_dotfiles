@@ -1,28 +1,36 @@
 
 function fish_greeting
-    # Atur warna teks ke krem (optional, bisa diganti sesuai keinginan)
-    echo -ne '\x1b[38;5;230m'  
+    set ascii_color '\x1b[38;5;230m'
+    set reset_color '\x1b[0m'
 
-    # ASCII art ikan
-    echo "⢀⠇⠀⠉⠙⠕⡆⠀⢀⠠⠀⠂⠀⠁⠈⠀⠁⠀⠂⠠⠀⡀⠀⠀⣀⡠⠰⠐⠘⢩"
-    echo "⢸⡆⠀⠀⠀⠀⢼⠂⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠑⢾⠀⠀⠀⠀⢠"
-    echo "⠸⣇⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸⡆⠀⠀⠀⢸"
-    echo "⠀⠰⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⠴⣶⣶⣤⠀⠀⠀⠀⠀⠀⠀⠀⠤⠒⠚"
-    echo "⠀⠌⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣸⢀⣿⡟⠉⡇⠀⠀⠀⠀⠀⠀⠀⠀⢄⠀"
-    echo "⠀⡃⠀⠀⠀⣠⣶⡮⠻⣿⣿⣦⡀⠀⣸⢿⢿⡧⠞⠀⠀⠀⠀⠀⠀⠀⠀⠀⠣⠀"
-    echo "⠁⠄⠀⢠⣾⣿⠇⠀⠀⠈⠻⣿⣿⣆⠁⠋⠘⠀⠀⢀⣀⣀⡀⠀⠀⠀⠀⠀⢰⠀"
-    echo "⠈⠰⡀⣿⣿⢿⠀⠀⠀⠀⣰⣿⣿⣿⣷⣶⣶⣿⣿⣿⠿⠿⠛⢀⠀⠀⠀⠀⠨⠀"
-    echo "⠀⠀⠀⣋⣭⣤⠳⡀⢀⣴⣿⣿⣿⣿⣿⣿⣿⣿⠇⠀⠀⠀⠸⣿⡆⠀⠀⠀⠐⠀"
-    echo "⠀⢠⣾⣿⣿⣧⡔⣾⣿⣿⣿⣿⣿⣐⣊⣿⣿⣿⡀⠀⠀⠀⣼⣿⣿⠀⠀⠀⠠⠀"
-    echo "⠀⣿⣿⣿⣿⣿⢃⣿⣿⣿⠟⠛⠛⠻⠿⣿⣿⣿⣷⣤⣤⣾⣿⣿⡇⠀⠀⠀⠂⠀"
-    echo "⠀⠙⠿⠟⠛⠁⠈⠻⠿⡿⠀⢀⡜⠁⠀⢸⣿⣿⣿⣿⣿⣿⣿⡟⠀⠀⠀⠐⠀⠀"
-    echo "⠀⠀⠀⢠⣴⣦⣤⣶⣴⠁⠄⡘⠀⠀⢀⡾⣿⣿⣿⠿⠿⠟⣍⡀⡀⠄⠂⠀⠀⠀"
-    echo "⠀⠀⢠⢈⡻⡇⡸⣇⣿⢿⢶⣶⣴⡻⠃⠀⢠⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀"
-    echo "⠀⠀⠘⠈⠁⠀⠀⠉⣘⡚⠸⠟⢿⠄⠀⠠⠟⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀"
+    set ascii_tmp (mktemp)
+    set ff_tmp (mktemp)
 
-    # Reset warna teks ke normal
-    set_color normal
+    # Tulis ASCII art ke temp file (fish-friendly)
+    printf "%b\n" \
+"$ascii_color\
+⢀⠇⠀⠉⠙⠕⡆⠀⢀⠠⠀⠂⠀⠁⠈⠀⠁⠀⠂⠠⠀⡀⠀⠀⣀⡠⠰⠐⠘⢩
+⢸⡆⠀⠀⠀⠀⢼⠂⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠑⢾⠀⠀⠀⠀⢠
+⠸⣇⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸⡆⠀⠀⠀⢸
+⠀⠰⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⠴⣶⣶⣤⠀⠀⠀⠀⠀⠀⠀⠀⠤⠒⠚
+⠀⠌⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣸⢀⣿⡟⠉⡇⠀⠀⠀⠀⠀⠀⠀⠀⢄⠀
+⠀⡃⠀⠀⠀⣠⣶⡮⠻⣿⣿⣦⡀⠀⣸⢿⢿⡧⠞⠀⠀⠀⠀⠀⠀⠀⠀⠀⠣⠀
+⠁⠄⠀⢠⣾⣿⠇⠀⠀⠈⠻⣿⣿⣆⠁⠋⠘⠀⠀⢀⣀⣀⡀⠀⠀⠀⠀⠀⢰⠀
+⠈⠰⡀⣿⣿⢿⠀⠀⠀⠀⣰⣿⣿⣿⣷⣶⣶⣿⣿⣿⠿⠿⠛⢀⠀⠀⠀⠀⠨⠀
+⠀⠀⠀⣋⣭⣤⠳⡀⢀⣴⣿⣿⣿⣿⣿⣿⣿⣿⠇⠀⠀⠀⠸⣿⡆⠀⠀⠀⠐⠀
+⠀⢠⣾⣿⣿⣧⡔⣾⣿⣿⣿⣿⣿⣐⣊⣿⣿⣿⡀⠀⠀⠀⣼⣿⣿⠀⠀⠀⠠⠀
+⠀⣿⣿⣿⣿⣿⢃⣿⣿⣿⠟⠛⠛⠻⠿⣿⣿⣿⣷⣤⣤⣾⣿⣿⡇⠀⠀⠀⠂⠀
+⠀⠙⠿⠟⠛⠁⠈⠻⠿⡿⠀⢀⡜⠁⠀⢸⣿⣿⣿⣿⣿⣿⣿⡟⠀⠀⠀⠐⠀⠀
+⠀⠀⠀⢠⣴⣦⣤⣶⣴⠁⠄⡘⠀⠀⢀⡾⣿⣿⣿⠿⠿⠟⣍⡀⡀⠄⠂⠀⠀⠀
+⠀⠀⢠⢈⡻⡇⡸⣇⣿⢿⢶⣶⣴⡻⠃⠀⢠⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠘⠈⠁⠀⠀⠉⣘⡚⠸⠟⢿⠄⠀⠠⠟⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+$reset_color" > $ascii_tmp
 
-    # Jalankan fastfetch dengan padding kiri 5
-    fastfetch
+    # fastfetch tanpa logo
+    fastfetch --logo none --key-padding-left 3 > $ff_tmp
+
+    # Tampilkan sejajar
+    paste -d ' ' $ascii_tmp $ff_tmp
+
+    rm $ascii_tmp $ff_tmp
 end
