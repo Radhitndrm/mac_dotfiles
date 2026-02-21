@@ -1,0 +1,86 @@
+AEROSPACE SHORTCUT LIST
+=======================
+
+MODE: main (default)
+--------------------
+
+WINDOW MANAGEMENT
+opt-ctrl-shift-f    Toggle fullscreen
+opt-ctrl-f          Toggle floating ↔ tiling
+opt-slash           Layout tiles (horizontal/vertical toggle)
+opt-comma           Layout accordion (horizontal/vertical toggle)
+
+FOCUS (Vim Style)
+opt-h               Focus kiri
+opt-j               Focus bawah
+opt-k               Focus atas
+opt-l               Focus kanan
+
+MOVE WINDOW (Swap)
+opt-shift-h         Swap kiri
+opt-shift-j         Swap bawah
+opt-shift-k         Swap atas
+opt-shift-l         Swap kanan
+
+JOIN WINDOWS
+opt-shift-left      Join dengan kiri
+opt-shift-down      Join dengan bawah
+opt-shift-up        Join dengan atas
+opt-shift-right     Join dengan kanan
+
+RESIZE
+cmd-shift-minus     Resize -50
+cmd-shift-equal     Resize +50
+
+WORKSPACE
+ctrl-1              Ke workspace 1
+ctrl-2              Ke workspace 2
+ctrl-3              Ke workspace 3
+ctrl-4              Ke workspace 4
+opt-tab             Workspace back and forth
+opt-shift-tab       Move workspace ke monitor berikutnya
+
+MOVE WINDOW TO WORKSPACE
+opt-shift-1         Pindah ke workspace 1
+opt-shift-2         Pindah ke workspace 2
+opt-shift-3         Pindah ke workspace 3
+opt-shift-4         Pindah ke workspace 4
+
+LAUNCH APPLICATIONS
+cmd-enter           Kitty (custom size + preset directory)
+opt-v               Visual Studio Code
+opt-o               OrbStack
+opt-b               Firefox
+opt-s               Slack
+opt-q               QuickTime Player
+opt-w               WezTerm
+opt-f               Finder
+opt-e               Final Cut Pro
+opt-z               Zen
+
+MODE SWITCHING
+opt-shift-semicolon Masuk mode service
+opt-shift-enter     Masuk mode apps
+
+
+MODE: service
+-------------
+
+esc                 Reload config + kembali ke main
+r                   Reset layout (flatten workspace tree)
+f                   Toggle floating ↔ tiling
+backspace           Tutup semua window kecuali sekarang
+
+
+MODE: apps
+----------
+
+opt-w               Buka WezTerm + kembali ke main
+
+
+WORKSPACE → MONITOR
+-------------------
+
+Workspace 1         Built-in display
+Workspace 2         DELL U
+Workspace 3         DELL S

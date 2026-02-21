@@ -69,9 +69,6 @@ run = 'layout floating'
 if.app-name-regex-substring = 'elgato'
 run = 'layout floating'
 
-[[on-window-detected]]
-if.app-name-regex-substring = 'dicord'
-run = 'layout floating'
 
 [[on-window-detected]]
 if.app-name-regex-substring = 'mail'
@@ -83,10 +80,6 @@ run = 'layout floating'
 
 [[on-window-detected]]
 if.app-name-regex-substring = 'quicktime'
-run = 'layout floating'
-
-[[on-window-detected]]
-if.app-name-regex-substring = 'discord'
 run = 'layout floating'
 
 [[on-window-detected]]
@@ -107,10 +100,10 @@ preset = 'qwerty'
 #                 Monitor pattern is the same as for 'workspace-to-monitor-force-assignment'.
 #                 See: https://nikitabobko.github.io/AeroSpace/guide#assign-workspaces-to-monitors
 [gaps]
-inner.horizontal = 20
-inner.vertical =   20
-outer.left =       20
-outer.bottom =     20
+inner.horizontal = 10
+inner.vertical =   10
+outer.left =       10
+outer.bottom =     10
 outer.top =        10
 outer.right =      60
 
@@ -163,20 +156,19 @@ alt-k = 'focus up'
 alt-l = 'focus right'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#move
-alt-shift-h = 'move left'
-alt-shift-j = 'move down'
-alt-shift-k = 'move up'
-alt-shift-l = 'move right'
-
+alt-shift-h = 'swap left'
+alt-shift-l = 'swap right'
+alt-shift-j = 'swap down'
+alt-shift-k = 'swap up'
 # See: https://nikitabobko.github.io/AeroSpace/commands#resize
 cmd-shift-minus = 'resize smart -50'
 cmd-shift-equal = 'resize smart +50'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#workspace
-cmd-1 = 'workspace 1'
-cmd-2 = 'workspace 2'
-cmd-3 = 'workspace 3'
-cmd-4 = 'workspace 4'
+ctrl-1 = 'workspace 1'
+ctrl-2 = 'workspace 2'
+ctrl-3 = 'workspace 3'
+ctrl-4 = 'workspace 4'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#move-node-to-workspace
 alt-shift-1 = 'move-node-to-workspace 1 --focus-follows-window'
@@ -192,7 +184,6 @@ alt-shift-semicolon = 'mode service'
 alt-shift-enter = 'mode apps'
 
 # alt-t = 'exec-and-forget open -a /Applications/Telegram.app'
-alt-o = 'exec-and-forget open -a /Applications/Obsidian.app'
 alt-b = 'exec-and-forget open -a /Applications/Brain.fm.app'
 alt-s = 'exec-and-forget open -a /Applications/Slack.app'
 alt-q = 'exec-and-forget open -a "/System/Applications/QuickTime Player.app"'
@@ -200,8 +191,9 @@ alt-w = 'exec-and-forget open -a /Applications/WezTerm.app'
 alt-f = 'exec-and-forget open -a /System/Library/CoreServices/Finder.app'
 alt-e = 'exec-and-forget open -a "/Applications/Final Cut Pro.app"'
 alt-z = 'exec-and-forget open -a /Applications/Zen.app'
-
-cmd-b = 'exec-and-forget open -a /Applications/Firefox.app' 
+alt-v = 'exec-and-forget open -a "Visual Studio Code"'
+alt-o = 'exec-and-forget open -a OrbStack'
+alt-b = 'exec-and-forget open -a /Applications/Firefox.app' 
 cmd-enter = "exec-and-forget /Applications/kitty.app/Contents/MacOS/kitty --single-instance=no --override width=120,height=40 --directory /Users/ndrm"
 # 'service' binding mode declaration.
 # See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
