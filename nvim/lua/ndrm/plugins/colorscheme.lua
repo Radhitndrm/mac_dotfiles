@@ -1,38 +1,35 @@
 return {
 	{
-		"catppuccin/nvim",
-		name = "catppuccin",
+		"ellisonleao/gruvbox.nvim",
 		priority = 1000,
 		config = function()
-			require("catppuccin").setup({
-				flavour = "mocha", -- lebih gelap, warm
-				background = {
-					light = "latte",
-					dark = "mocha",
-				},
-				transparent_background = true, -- untuk terminal transparan
-				styles = {
-					comments = { "italic" },
-					keywords = { "bold" },
-					functions = { "bold" },
-					variables = {},
-				},
-				color_overrides = {
-					mocha = {
-						base = "#3B2E2A", -- background coklat gelap
-						mantle = "#4A3B35", -- blok
-						crust = "#5C443A", -- block deeper
-						text = "#F5F0E1", -- teks krem
-						overlay0 = "#E0C097", -- teks aksen lembut
-						pink = "#D98F5F", -- accent
-						red = "#FF5555",
-						orange = "#FF9955",
-						yellow = "#FFDDAA",
-					},
-				},
+			require("gruvbox").setup({
+				contrast = "hard",
+				transparent_mode = false,
 			})
 
-			vim.cmd.colorscheme("catppuccin")
+			vim.cmd("colorscheme gruvbox")
+
+			-- background utama
+			local bg = "#1d2021" -- gruvbox hard
+			local bg_soft = "#282828"
+
+			-- gutter & line number
+			vim.api.nvim_set_hl(0, "Normal", { bg = bg })
+			vim.api.nvim_set_hl(0, "SignColumn", { bg = bg })
+			vim.api.nvim_set_hl(0, "LineNr", { fg = "#665c54", bg = bg })
+			vim.api.nvim_set_hl(0, "CursorLineNr", { fg = "#fabd2f", bold = true })
+
+			-- hilangkan blok terang
+			vim.api.nvim_set_hl(0, "CursorLine", { bg = bg_soft })
+			vim.api.nvim_set_hl(0, "ColorColumn", { bg = bg_soft })
+			vim.api.nvim_set_hl(0, "FoldColumn", { bg = bg })
+			vim.api.nvim_set_hl(0, "VertSplit", { fg = "#3c3836", bg = bg })
+			vim.api.nvim_set_hl(0, "WinSeparator", { fg = "#3c3836", bg = bg })
+
+			-- floating window
+			vim.api.nvim_set_hl(0, "NormalFloat", { bg = bg })
+			vim.api.nvim_set_hl(0, "FloatBorder", { bg = bg, fg = "#504945" })
 		end,
 	},
 }

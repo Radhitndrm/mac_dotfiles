@@ -184,7 +184,6 @@ alt-shift-semicolon = 'mode service'
 alt-shift-enter = 'mode apps'
 
 # alt-t = 'exec-and-forget open -a /Applications/Telegram.app'
-alt-b = 'exec-and-forget open -a /Applications/Brain.fm.app'
 alt-s = 'exec-and-forget open -a /Applications/Slack.app'
 alt-q = 'exec-and-forget open -a "/System/Applications/QuickTime Player.app"'
 alt-w = 'exec-and-forget open -a /Applications/WezTerm.app'

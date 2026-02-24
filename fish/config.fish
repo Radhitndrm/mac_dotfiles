@@ -22,3 +22,5 @@ fish_add_path /home/ndrm/.spicetify
 
 # OrbStack (Mac / Linux compatible)
 source ~/.orbstack/shell/init2.fish 2>/dev/null || :
+set -x JAVA_HOME (/usr/libexec/java_home)
+set -x PATH $JAVA_HOME/bin $PATH
