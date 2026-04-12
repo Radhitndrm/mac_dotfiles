@@ -2,29 +2,29 @@
 function fish_prompt
 
     # --- Blok Mac ---
-    set_color -b "#3B2E2A" "#F5F0E1"
-    echo -n "  "
-    set_color -b "#4A3B35" -o "#3B2E2A"
-    echo -n ""
+    set_color -b "#2b3337" "#f8f9e8"
+    echo -n "  "
+    set_color -b "#374145" -o "#2b3337"
+    echo -n ""
 
     # --- Blok Folder/Home ---
-    set_color -b "#4A3B35" "#F1D8A8"
+    set_color -b "#374145" "#adc9bc"
     if test "$PWD" = "$HOME"
-        echo -n "  ~ "
-        set_color -b normal -o "#4A3B35"
-        echo -n ""
+        echo -n "  ~ "
+        set_color -b normal -o "#374145"
+        echo -n ""
     else
-        echo -n "  "
-        set_color -b "#3B2E2A" -o "#4A3B35"
-        echo -n ""
+        echo -n "  "
+        set_color -b "#2b3337" -o "#374145"
+        echo -n ""
     end
 
     # --- Blok Nama Folder ---
     if test "$PWD" != "$HOME"
-        set_color -b "#3B2E2A" "#D98F5F"
+        set_color -b "#2b3337" "#cbe3b3"
         echo -n " "(basename $PWD)" "
-        set_color -b normal -o "#3B2E2A"
-        echo -n ""
+        set_color -b normal -o "#2b3337"
+        echo -n ""
     end
 
     # --- End ---

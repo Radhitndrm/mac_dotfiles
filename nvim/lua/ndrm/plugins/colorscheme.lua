@@ -1,35 +1,44 @@
 return {
 	{
-		"ellisonleao/gruvbox.nvim",
+		"everviolet/nvim",
+		name = "evergarden",
 		priority = 1000,
 		config = function()
-			require("gruvbox").setup({
-				contrast = "hard",
-				transparent_mode = false,
+			require("evergarden").setup({
+				theme = {
+					variant = "fall",
+					accent = "green",
+				},
+				editor = {
+					transparent_background = false,
+				},
+				integrations = {
+					lualine = true,
+					telescope = true,
+					neotree = true,
+					gitsigns = true,
+					blink_cmp = true,
+				},
 			})
 
-			vim.cmd("colorscheme gruvbox")
+			vim.cmd("colorscheme evergarden")
 
-			-- background utama
-			local bg = "#1d2021" -- gruvbox hard
-			local bg_soft = "#282828"
+			local bg = "#232a2e"
+			local bg_soft = "#2b3337"
 
-			-- gutter & line number
 			vim.api.nvim_set_hl(0, "Normal", { bg = bg })
 			vim.api.nvim_set_hl(0, "SignColumn", { bg = bg })
-			vim.api.nvim_set_hl(0, "LineNr", { fg = "#665c54", bg = bg })
-			vim.api.nvim_set_hl(0, "CursorLineNr", { fg = "#fabd2f", bold = true })
+			vim.api.nvim_set_hl(0, "LineNr", { fg = "#58686d", bg = bg })
+			vim.api.nvim_set_hl(0, "CursorLineNr", { fg = "#f5d098", bold = true })
 
-			-- hilangkan blok terang
 			vim.api.nvim_set_hl(0, "CursorLine", { bg = bg_soft })
 			vim.api.nvim_set_hl(0, "ColorColumn", { bg = bg_soft })
 			vim.api.nvim_set_hl(0, "FoldColumn", { bg = bg })
-			vim.api.nvim_set_hl(0, "VertSplit", { fg = "#3c3836", bg = bg })
-			vim.api.nvim_set_hl(0, "WinSeparator", { fg = "#3c3836", bg = bg })
+			vim.api.nvim_set_hl(0, "VertSplit", { fg = "#2b3337", bg = bg })
+			vim.api.nvim_set_hl(0, "WinSeparator", { fg = "#2b3337", bg = bg })
 
-			-- floating window
 			vim.api.nvim_set_hl(0, "NormalFloat", { bg = bg })
-			vim.api.nvim_set_hl(0, "FloatBorder", { bg = bg, fg = "#504945" })
+			vim.api.nvim_set_hl(0, "FloatBorder", { bg = bg, fg = "#374145" })
 		end,
 	},
 }
