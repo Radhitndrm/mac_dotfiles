@@ -1,9 +1,15 @@
 return {
+	{
+		"saghen/blink.lib",
+		lazy = false,
+		version = "*",
+	},
 	{ -- Autocompletion
 		"saghen/blink.cmp",
 		event = "VimEnter",
-		version = "1.*",
 		dependencies = {
+			"rafamadriz/friendly-snippets",
+			"saghen/blink.lib",
 			-- Snippet Engine
 			{
 				"L3MON4D3/LuaSnip",
