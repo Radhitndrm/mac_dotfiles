@@ -29,12 +29,6 @@ map("n", "<M-s>", "<cmd>w<CR>", { desc = "Save file" })
 map("n", "<M-q>", "<cmd>q<CR>", { desc = "Quit" })
 map("n", "<M-S-q>", "<cmd>q!<CR>", { desc = "Force quit" })
 
--- Buffer navigation (Barbar / Bufferline)
-map("n", "<M-,>", "<Cmd>BufferPrevious<CR>", { desc = "Previous buffer" })
-map("n", "<M-.>", "<Cmd>BufferNext<CR>", { desc = "Next buffer" })
-map("n", "<M-c>", "<Cmd>BufferClose<CR>", { desc = "Close buffer" })
-map("n", "<M-p>", "<Cmd>BufferPick<CR>", { desc = "Pick buffer" })
-
 -- Select all
 map("n", "vv", "ggVG", { desc = "Select all" })
 
