@@ -220,19 +220,11 @@ return {
 			--        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
 
 			local servers = {
-				ts_ls = {
+				volar = {
 					filetypes = { "typescript", "javascript", "javascriptreact", "typescriptreact", "vue" },
 					init_options = {
-						plugins = {
-							{
-								name = "@vue/typescript-plugin",
-								location = vim.fn.stdpath("data")
-									.. "/mason/packages/vue-language-server/node_modules/@vue/language-server",
-								languages = { "vue" },
-							},
-						},
+						vue = { hybridMode = false },
 					},
-					single_file_support = false,
 				},
 
 				lua_ls = {
@@ -292,11 +284,9 @@ return {
 				handlers = {
 					function(server_name)
 						local server = servers[server_name] or {}
-						-- This handles overriding only values explicitly passed
-						-- by the server configuration above. Useful when disabling
-						-- certain features of an LSP (for example, turning off formatting for ts_ls)
 						server.capabilities = vim.tbl_deep_extend("force", {}, capabilities, server.capabilities or {})
-						require("lspconfig")[server_name].setup(server)
+						vim.lsp.config(server_name, server)
+						vim.lsp.enable(server_name)
 					end,
 				},
 			})

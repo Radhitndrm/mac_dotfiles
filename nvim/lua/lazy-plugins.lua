@@ -12,6 +12,15 @@ return require("lazy").setup({
 	-- LSP configurations
 	require("ndrm.plugins.lspconfig"),
 
+	-- LazyGit
+	require("ndrm.plugins.lazygit"),
+
+	-- Test runner
+	require("ndrm.plugins.neotest"),
+
+	-- Pretty diagnostics
+	require("ndrm.plugins.trouble"),
+
 	-- Surround text objects
 	require("ndrm.plugins.vim-surround"),
 
@@ -21,8 +30,11 @@ return require("lazy").setup({
 	-- Code formatting
 	require("ndrm.plugins.conform"),
 
+	-- Discord Presence
+	require("ndrm.plugins.presence"),
+
 	-- Autocompletion
-	require("ndrm.plugins.cmp"),
+	require("ndrm.plugins.blink-cmp"),
 
 	-- Highlight colors in buffer
 	require("ndrm.plugins.highlight-color"),
@@ -49,9 +61,6 @@ return require("lazy").setup({
 	-- Comment string for languages
 	require("ndrm.plugins.commentstring"),
 
-	-- Discord presence
-	require("ndrm.plugins.presence"),
-
 	-- Colorscheme
 	require("ndrm.plugins.colorscheme"),
 
@@ -60,6 +69,9 @@ return require("lazy").setup({
 
 	-- Mini plugin collection
 	require("ndrm.plugins.mini"),
+
+	-- Markdown preview
+	require("ndrm.plugins.markdown-preview"),
 
 	-- Treesitter for syntax highlighting and text objects
 	require("ndrm.plugins.treesitter"),
@@ -82,11 +94,11 @@ return require("lazy").setup({
 	-- legendary
 	require("ndrm.plugins.legendary"),
 
-	-- Barbar
-	require("ndrm.plugins.barbar"),
-
 	-- CodeSnap
 	require("ndrm.plugins.codesnap"),
+
+	-- Opencode AI
+	require("ndrm.plugins.opencode"),
 	-- ===============================
 	{
 		"glepnir/dashboard-nvim",
